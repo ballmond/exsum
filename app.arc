@@ -11,3 +11,7 @@ data
   scopeID *String
   dataID **String
   ttl TTL
+
+@aws
+region us-east-2
+profile default
