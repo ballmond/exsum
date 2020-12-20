@@ -5,6 +5,7 @@ begin-app
 get /
 get /exsum
 get /download
+get /download:study
 
 @tables
 data
