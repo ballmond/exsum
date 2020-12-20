@@ -16,7 +16,6 @@ exports.handler = async function http (req) {
   const myBucket = params.Bucket
   const myKey = params.Key
   const signedUrlExpireSeconds = 60 * 5
-  
   const url = s3.getSignedUrl('getObject', {
       Bucket: myBucket,
       Key: myKey,
