@@ -2,24 +2,22 @@ let arc = require('@architect/functions')
 const AWS = require('aws-sdk');
 
 exports.handler = async function http (req) {
-  console.log(req.queryStringParameters)
+  const study = req.queryStringParameters.study
   var params = {
-      Bucket: "study-123",
-      Key: "study-123.xlsx"
-    };
+      Bucket: `exsum-reports/${study}`,
+      Key: `${study}.xlsm`
+  };
   
-    AWS.config.update({
-      accessKeyId: process.env.ACCESS_KEY_ID, 
-      secretAccessKey: process.env.SECRET_ACCESS_KEY,
-      region: "us-east-2"
-    })
-    console.log(process.env.ACCESS_KEY_ID)
-    const s3 = new AWS.S3()
-    const myBucket = params.Bucket
-    const myKey = params.Key
-    const signedUrlExpireSeconds = 60 * 5
+  AWS.config.update({
+    region: "us-east-1"
+  })
+  console.log(process.env.ACCESS_KEY_ID)
+  const s3 = new AWS.S3()
+  const myBucket = params.Bucket
+  const myKey = params.Key
+  const signedUrlExpireSeconds = 60 * 5
   
-    const url = s3.getSignedUrl('getObject', {
+  const url = s3.getSignedUrl('getObject', {
       Bucket: myBucket,
       Key: myKey,
       Expires: signedUrlExpireSeconds
