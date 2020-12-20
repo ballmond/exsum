@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
         region: "us-east-2"
       })
+      console.log(process.env.AWS_ACCESS_KEY_ID)
       const s3 = new AWS.S3()
       const myBucket = params.Bucket
       const myKey = params.Key
